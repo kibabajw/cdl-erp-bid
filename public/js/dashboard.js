@@ -5,14 +5,16 @@
     $(".aside-link-item-wrapper").each(function() {
         $(this).on("click", function() {                 
             $(".aside-link-item-wrapper").each(function() {
-                $(this).css("background-color", "#eee");
-                $(this).children().css( "color", "#4169e1" );
-                $(this).removeClass("card");
+                // $(this).css("background-color", "#eee");
+                // $(this).children().css( "color", "#4169e1" );
+                // $(this).removeClass("card");
+
+                $(".aside-link-item-wrapper span").css("border-bottom", "");
             });
 
-            $(this).addClass("card");  
-            $(this).css("background-color", "coral");    
-            $(this).children().css( "color", "#fff" );
+            // $(this).addClass("card");  
+            // $(this).css("background-color", "coral");    
+            // $(this).children().css( "color", "#fff" );
         });    
     });
 
@@ -25,9 +27,11 @@
     var asidelinkitemnotifications = $("#aside-link-item-notifications");       
     
     function buildhomescreen() {
-        $("#aside-link-item-home").addClass("card");  
-        $("#aside-link-item-home").css("background-color", "coral");    
-        $("#aside-link-item-home").children().css( "color", "#fff" );
+        $("#aside-link-item-home span").css("border-bottom", "3px solid #4169e1"); 
+        // border-bottom: 3px solid #333;
+        // $("#aside-link-item-home").addClass("card");  
+        // $("#aside-link-item-home").css("background-color", "coral");    
+        // $("#aside-link-item-home").children().css( "color", "#fff" );
 
         main.html("");
         mainsystemsummaries.html("");
@@ -64,9 +68,53 @@
                 <span class="summary-counter">67000</span>
             </div>`
         ));
+
+        main.append(`<div id="other-summaries" class="rounded p-2 card">
+        <div id="" class="rounded p-2">
+            <span style="font-weight: 600;font-size: 16px;">CLIENTS</span>
+            <div><canvas id="clientschart"></canvas></div>
+        </div>
+        <div id="" class="rounded p-2">
+            <span style="font-weight: 600;font-size: 16px;">EMPLOYEES</span>
+            <div><canvas id="employeesschart"></canvas></div>
+        </div>
+        <div id="" class="rounded p-2">
+            <span style="font-weight: 600;font-size: 16px;">REQUESTS</span>
+            <div><canvas id="requestschart"></canvas></div>
+        </div>
+        </div>`);
+        
+        buildchart(document.getElementById('clientschart'), 'doughnut', "Clients");        
+        buildchart(document.getElementById('employeesschart'), 'pie', "Employees");
+        buildchart(document.getElementById('requestschart'), 'polarArea', "Requests");
     };
     
+    function buildchart(ctx, type, audience) {             
+        let _label = '# of ' + audience;
+        
+        new Chart(ctx, {
+            type: type,
+            data: {
+              labels: ['Active', 'In-active', 'Dormant'],
+              datasets: [{
+                label: _label,
+                data: [420, 109, 91],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+    };
+
     function buildclientsscreen() {
+        $("#aside-link-item-clients span").css("border-bottom", "3px solid #4169e1");
+
         main.html(`
         <h4>Clients' Summary</h4>
             <table id="clients-table" class="display" style="width:100%">
@@ -80,6 +128,7 @@
                         <th>Contract Renewals</th>
                         <th>Requests</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -92,6 +141,7 @@
                         <th>Contract Renewals</th>
                         <th>Requests</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
             </table>
@@ -100,11 +150,20 @@
         new DataTable("#clients-table", {
             ajax: './clients.json',
             processing: true,
-            serverSide: true
+            serverSide: true,
+            columnDefs: [
+                {
+                    data: null,
+                    defaultContent: '<button type="button" class="btn btn-light"><i class="bi bi-pencil-square"></i></button>',
+                    targets: -1
+                }
+            ]
         });
     };
     
     function buildclientsemployees() {
+        $("#aside-link-item-employees span").css("border-bottom", "3px solid #4169e1");
+
         main.html(`
         <h4>Employees</h4>
             <table id="clients-table" class="display" style="width:100%">
@@ -120,6 +179,7 @@
                         <th>Contract Duration</th>
                         <th>Contract Status</th>
                         <th>Employee Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -134,6 +194,7 @@
                         <th>Contract Duration</th>
                         <th>Contract Status</th>
                         <th>Employee Status</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
             </table>
@@ -142,11 +203,20 @@
         new DataTable("#clients-table", {
             ajax: './employees.json',
             processing: true,
-            serverSide: true
+            serverSide: true,
+            columnDefs: [
+                {
+                    data: null,
+                    defaultContent: '<button type="button" class="btn btn-light"><i class="bi bi-pencil-square"></i></button>',
+                    targets: -1
+                }
+            ]
         });
     };
 
     function buildclientscontracts() {
+        $("#aside-link-item-contracts span").css("border-bottom", "3px solid #4169e1");
+
         main.html(`
         <h4>Clients' Contracts</h4>
             <table id="clients-table" class="display" style="width:100%">
@@ -160,6 +230,7 @@
                         <th>Contract End Date</th>
                         <th>Renewals</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -172,6 +243,7 @@
                         <th>Contract End Date</th>
                         <th>Renewals</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
             </table>
@@ -180,11 +252,20 @@
         new DataTable("#clients-table", {
             ajax: './contracts.json',
             processing: true,
-            serverSide: true
+            serverSide: true,
+            columnDefs: [
+                {
+                    data: null,
+                    defaultContent: '<button type="button" class="btn btn-light"><i class="bi bi-pencil-square"></i></button>',
+                    targets: -1
+                }
+            ]
         });
     };
 
     function buildclientsdocuments() {
+        $("#aside-link-item-documents span").css("border-bottom", "3px solid #4169e1");
+
         main.html(`
         <h4>Clients' Documents</h4>
         <div id="div-documents" style="display: flex; flex-direction: row;flex-wrap: wrap;"></div>
@@ -193,7 +274,7 @@
         $("#div-documents").html("");
         
         $("#div-documents").html(`
-        <select id="pet-select"  class="select mt-2 mb-4">
+        <select id="pet-select"  class="select mt-2 mb-4 rounded">
             <option value="">Please choose a Company</option>
             <option value="cdl">Career Developers Limited</option>
             <option value="favoutechsolutions">Favour Tech Solutions</option>
@@ -206,12 +287,14 @@
 
         for (var i = 0, length = 28; i < 28; ++i) {
             $("#div-documents").append(`
-            <div class="card document-block"><i class="bi bi-file-earmark-text"></i></div>
+            <div style="color: #888;font-size: 13px;font-weight: 600;"><div class="card document-block"><i class="bi bi-three-dots-vertical" style="font-size: 20px;position:absolute;margin-top:-50px;right:10px;"></i><i class="bi bi-filetype-xlsx"></i></div>&nbsp;&nbsp;&nbsp;Document 00${i+1}</div>
             `);
         }
     };
 
     function buildclientsrequests() {
+        $("#aside-link-item-requests span").css("border-bottom", "3px solid #4169e1");
+
         main.html(`
         <h4>Clients' Requests</h4>
         <div id="div-requests" style="display: flex; flex-direction: row;flex-wrap: wrap;"></div>
@@ -220,7 +303,7 @@
         $("#div-requests").html("");
         
         $("#div-requests").html(`
-        <select id="pet-select"  class="select mt-2 mb-4">
+        <select id="pet-select"  class="select mt-2 mb-4 rounded">
             <option value="">Please choose a Company</option>
             <option value="cdl">Career Developers Limited</option>
             <option value="favoutechsolutions">Favour Tech Solutions</option>
@@ -238,6 +321,11 @@
                     <b>Career Developers Limited</b>
                 </header>
                 <p>Easily realign text to components with text alignment classes. For start, end, and center alignment, responsive classes are available that use the same viewport width breakpoints as the grid system.</p>
+                <div class="req-item-menu">
+                <i class="bi bi-trash3"></i>
+                <i class="bi bi-x-circle"></i>
+                <i class="bi bi-plus-circle"></i>
+                </div>
             </div>
             `);
         }

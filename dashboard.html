@@ -13,21 +13,21 @@
 </head>
 <body>
     <nav id="nav-home" class="">
-        <div>
-            <a href=""><i class="bi bi-bell aside-link-item" style="font-size: 1.3rem;"></i><sup style="position: absolute;margin-top: 10px; margin-left: 22px;padding: 5px;background-color: #4169e1;color: #fff;font-weight: 600;border-radius: 50%;height: 20px;width: 20px;display: flex;flex-direction: row;justify-content: center;align-items: center;">21</sup></a>
-            <a href=""><i class="bi bi-person-circle aside-link-item" style="font-size: 1.3rem;"></i></a>
-            <a href=""><i class="bi bi-building-gear aside-link-item" style="font-size: 1.3rem;"></i></a>
-            <a href=""><i class="bi bi-box-arrow-right aside-link-item" style="font-size: 1.3rem;"></i></a>
+        <aside id="links-aside" class="rounded">
+            <div id="aside-link-item-home" class="aside-link-item-wrapper"><i class="bi bi-house aside-link-item"></i><span>Home</span></div>
+            <div id="aside-link-item-clients" class="aside-link-item-wrapper"><i class="bi bi-briefcase aside-link-item"></i><span>Clients</span></div>
+            <div id="aside-link-item-employees" class="aside-link-item-wrapper"><i class="bi bi-people aside-link-item"></i><span>Employees</span></div>
+            <div id="aside-link-item-contracts" class="aside-link-item-wrapper"><i class="bi bi-journal aside-link-item"></i><span>Contracts</span></div>
+            <div id="aside-link-item-documents" class="aside-link-item-wrapper"><i class="bi bi-folder aside-link-item"></i><span>Documents</span></div>
+            <div id="aside-link-item-requests" class="aside-link-item-wrapper"><i class="bi bi-hourglass-split aside-link-item"></i><span>Requests</span></div>
+        </aside>
+        <div id="profile-nav-links">
+            <a href=""><i class="bi bi-bell aside-link-item" style="font-size: 1.3rem;"></i><sup style="position: absolute;margin-top: 10px; margin-left: 22px;padding: 5px;background-color: #4169e1;color: #fff;font-weight: 600;border-radius: 50%;height: 20px;width: 20px;display: flex;flex-direction: row;justify-content: center;align-items: center;">21</sup><span style="position: absolute;margin-top: 40px;font-size: 11px;">Notifications</span></a>
+            <a href=""><i class="bi bi-person-circle aside-link-item" style="font-size: 1.3rem;"></i><span style="position: absolute;margin-top: 40px;font-size: 11px;">PROFILE</span></a>
+            <a href=""><i class="bi bi-building-gear aside-link-item" style="font-size: 1.3rem;"></i><span style="position: absolute;margin-top: 40px;font-size: 11px;">Settings</span></a>
+            <a href=""><i class="bi bi-box-arrow-right aside-link-item" style="font-size: 1.3rem;"></i><span style="position: absolute;margin-top: 40px;font-size: 11px;">Logout</span></a>
         </div>
-    </nav>
-    <aside id="links-aside" class="rounded">
-        <div id="aside-link-item-home" class="aside-link-item-wrapper"><i class="bi bi-house aside-link-item" style="font-size: 1.5rem;"></i></div>
-        <div id="aside-link-item-clients" class="aside-link-item-wrapper"><i class="bi bi-briefcase aside-link-item" style="font-size: 1.5rem;"></i></div>
-        <div id="aside-link-item-employees" class="aside-link-item-wrapper"><i class="bi bi-people aside-link-item" style="font-size: 1.5rem;"></i></div>
-        <div id="aside-link-item-contracts" class="aside-link-item-wrapper"><i class="bi bi-journal aside-link-item" style="font-size: 1.5rem;"></i></div>
-        <div id="aside-link-item-documents" class="aside-link-item-wrapper"><i class="bi bi-folder aside-link-item" style="font-size: 1.5rem;"></i></div>
-        <div id="aside-link-item-requests" class="aside-link-item-wrapper"><i class="bi bi-hourglass-split aside-link-item" style="font-size: 1.5rem;"></i></div>
-    </aside>
+    </nav>   
     <div id="main" class="rounded">
         <div id="main-system-summaries" class="rounded">
             
@@ -36,6 +36,7 @@
     <script src="./public/js/jQuery/jquery-3.7.1.min.js"></script>
     <script src="./public/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
     <script src="./public/datatables/dataTables.js"></script>
+    <script src="./public/js/chart.js"></script>
     <script src="./public/js/dashboard.js"></script>
 </body>
 </html>
